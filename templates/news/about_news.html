@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+	About news
+{% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+        <div class="container-fluid p-5 bg-primary text-white text-center">
+            <h1>{{ new.news_title }}</h1>
+            <img src="{% static new.news_image %}" alt="news_image">
+            <h2>New Category:{{ new.news_category }}</h2>
+            <h4>{{ new.news_description }}</h4>
+            <p>{{ new.news_content }}</p>
+        </div>
+    </div>
+    <button type="button" class="btn btn-warning"><a href="{% url 'edit_news' new.pk %}">EditNews</a></button>
+    <button type="button" class="btn btn-danger"><a href="{% url 'delete_news' new.pk %}">Delete News</a></button>
+{% endblock %}

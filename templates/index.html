@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	Home
+{% endblock %}
+{% block content %}
+	<link rel="stylesheet" href="{% static 'style/card.css' %}">
+    
+    <div class="parent">
+      <div class="card">
+          <div class="content-box">
+              <span class="card-title">{{ new_list.news_title }}</span>
+              <p class="card-content">
+                  {{ news.news_category }} 
+              </p>
+              <span class="see-more"><a href="{% url 'list_news' %}" class="text-success">See More</a></span>
+          </div>
+          <div class="date-box">
+              <span class="month">{{ news.news_pub_date }}</span>
+          </div>
+      </div>
+    </div>
+    
+{% endblock %}

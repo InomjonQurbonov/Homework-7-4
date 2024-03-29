@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Add news
+{% endblock %}
+
+{% block content %}
+	<h1>Add news</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add news" class="btn btn-success">
+    </form>
+{% endblock %}
