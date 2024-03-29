@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'style/bg.css' %}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'style/footer.css' %}"
+    />
+    <title>{% block title %} MainPage {% endblock %}</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <img
+            src="https://avatars.mds.yandex.net/i?id=e8f1abf4e29d1ca4ba1bac4d8ce1e26adbc3e5d7-12473946-images-thumbs&n=13"
+            alt="News Logo"
+            style="width: 40px"
+            class="rounded-pill"
+          />
+          News
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapsibleNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'list_news' %}">Tezkor Yangiliklar</a>
+            </li>
+            <li class="nav-item"> 
+                <a class="nav-link" href="#">Sport xabarlari</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Ta'lim yangiliklari</a>
+            </li>
+              {% if user.is_authenticated %}
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{ user.username }}</a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'add_news' %}">Add News</a></li>
+                        <li><a class="dropdown-item" href="#">Another link</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                      </ul>
+                  </li>
+              {% else %}
+                  <a href="{% url 'login' %}"><button type="button" class="btn btn-success">Login</button></a>
+                  <a href="{% url 'registration' %}"><button type="button" class="btn btn-info">Register</button></a>
+              {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <br />
+    <br />
+    {% block content %}
+            
+     {% endblock %}
+    <br />
+    <br />
+
+    <div
+      class="container-footer w-container bg-info"
+    >
+      <div class="w-row">
+        <div class="footer-column w-clearfix w-col w-col-4">
+          <img src="https://avatars.mds.yandex.net/i?id=e8f1abf4e29d1ca4ba1bac4d8ce1e26adbc3e5d7-12473946-images-thumbs&n=13"
+            alt=""
+            width="100"
+            class="failory-logo-image"
+          />
+          <h3 class="footer-failory-name">News</h3>
+          <p class="footer-description-failory">
+            Eng so'nggi yangiliklar bizda<br />
+          </p>
+        </div>
+        <div class="footer-column w-col w-col-8">
+          <div class="w-row">
+            <div class="w-col w-col-8">
+              <div class="w-row">
+                <div class="w-col w-col-7 w-col-small-6 w-col-tiny-7">
+                  <h3 class="footer-titles">Bo'limlarimiz</h3>
+                  <p class="footer-links">
+                    <a href="" target="_blank"
+                      ><span class="footer-link"
+                        >Ta'lim Yangiliklari<br /></span></a
+                    ><a href=""
+                      ><span class="footer-link">Politika<br /></span></a
+                    ><a href=""
+                      ><span class="footer-link">Tezkor yangiliklar</span></a
+                    ><span><br /></span
+                    ><a href=""
+                      ><span class="footer-link"
+                        >Viloyatlardagi Yangiliklar<br /></span></a
+                    ><a href=""
+                      ><span class="footer-link"
+                        >Prezident qarorolari<br /></span></a
+                    ><strong><br /></strong>
+                  </p>
+                </div>
+                <div class="w-col w-col-5 w-col-small-6 w-col-tiny-5">
+                  <h3 class="footer-titles">Boshqalar</h3>
+                  <p class="footer-links">
+                    <a href=""
+                      ><span class="footer-link"
+                        >Qo'llab Quvvatlash<br /></span></a
+                    ><a href=""
+                      ><span class="footer-link">Aloqa<br /></span></a
+                    ><a href=""><span class="footer-link"></span></a
+                    ><a href=""
+                      ><span class="footer-link">Privacy Policy<br /></span></a
+                    ><a href=""><span class="footer-link">Terms of Use</span></a
+                    ><strong><br /></strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="column-center-mobile w-col w-col-4">
+              <h3 class="footer-titles">Follow Us!</h3>
+              <a
+                href=""
+                target="_blank"
+                class="footer-social-network-icons w-inline-block"
+                ><img
+                  src="https://uploads-ssl.webflow.com/5966ea9a9217ca534caf139f/5c8dbf0a2f2b67e3b3ba079c_Twitter%20Icon.svg"
+                  width="20"
+                  alt="Twitter icon" /></a
+              ><a
+                href=""
+                target="_blank"
+                class="footer-social-network-icons w-inline-block"
+                ><img
+                  src="https://uploads-ssl.webflow.com/5966ea9a9217ca534caf139f/5c8dbfe70fcf5a0514c5b1da_Instagram%20Icon.svg"
+                  width="20"
+                  alt="Instagram icon" /></a
+              ><a
+                href=""
+                target="_blank"
+                class="footer-social-network-icons w-inline-block"
+                ><img
+                  src="https://uploads-ssl.webflow.com/5966ea9a9217ca534caf139f/5c8dbe42e1e6034fdaba46f6_Facebook%20Icon.svg"
+                  width="20"
+                  alt="Facebook Icon" /></a
+              ><a
+                href=""
+                target="_blank"
+                class="footer-social-network-icons w-inline-block"
+                ><img
+                  src="https://uploads-ssl.webflow.com/5966ea9a9217ca534caf139f/5c8dc0002f2b676eb4ba0869_LinkedIn%20Icon.svg"
+                  width="20"
+                  alt="LinkedIn Icon" /></a
+              ><a
+                href=""
+                target="_blank"
+                class="footer-social-network-icons w-inline-block"
+                ><img
+                  src="https://uploads-ssl.webflow.com/5966ea9a9217ca534caf139f/5c8dc0112f2b6739c9ba0871_Pinterest%20Icon.svg"
+                  width="20"
+                  alt="Pinterest Icon"
+                  class=""
+              /></a>
+              <p class="footer-description">
+                Email me at:
+                <a href=""
+                  ><strong class="link-email-footer">info@news.com</strong></a
+                ><br />
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
